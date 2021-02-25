@@ -8,10 +8,17 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const MealItem = ({title, affordability, complexity, imageUrl, duration}) => {
+const MealItem = ({
+  onSelectItem,
+  title,
+  affordability,
+  complexity,
+  imageUrl,
+  duration,
+}) => {
   return (
     <View style={styles.mealItem}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onSelectItem}>
         <View style={{...styles.itemRow, ...styles.header}}>
           <ImageBackground style={styles.bgImage} source={{uri: imageUrl}}>
             <View style={styles.titleContainer}>

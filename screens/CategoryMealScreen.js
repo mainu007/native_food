@@ -12,7 +12,15 @@ const CategoryMealScreen = ({navigation}) => {
     (item) => item.categoryIds.indexOf(categoryId) >= 0,
   );
   const renderMealItem = ({item}) => {
-    return <MealItem {...item} />;
+    const onSelectItem = () => {
+      navigation.navigate({
+        routeName: 'MealDetail',
+        params: {
+          mealId: item.id,
+        },
+      });
+    };
+    return <MealItem {...item} onSelectItem={onSelectItem} />;
   };
 
   return (
