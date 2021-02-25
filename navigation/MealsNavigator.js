@@ -12,6 +12,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {Platform} from 'react-native';
 
+const defaultStackNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primary : '',
+  },
+  headerTintColor: Platform.OS === 'android' ? '#fff' : Colors.primary,
+};
+
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
@@ -26,12 +33,17 @@ const MealsNavigator = createStackNavigator(
     MealDetail: MealDetailScreen,
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : '',
-      },
-      headerTintColor: Platform.OS === 'android' ? '#fff' : Colors.primary,
-    },
+    defaultNavigationOptions: defaultStackNavOptions,
+  },
+);
+
+const FavNavigator = createStackNavigator(
+  {
+    Favorites: FavoriteScreen,
+    MealDetail: MealDetailScreen,
+  },
+  {
+    defaultNavigationOptions: defaultStackNavOptions,
   },
 );
 
@@ -51,7 +63,7 @@ const tabNavigatorConfig = {
     },
   },
   Favorites: {
-    screen: FavoriteScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarIcon: (tabInfo) => {
         return <AntDesign name="star" size={25} color={tabInfo.tintColor} />;
