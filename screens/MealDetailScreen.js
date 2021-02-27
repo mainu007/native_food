@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button, Image, ScrollView} from 'react-native';
+import {View, Text, StyleSheet, Alert, Image, ScrollView} from 'react-native';
 import {MEALS} from '../data/dummy-data';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/CustomHeaderButton';
@@ -45,7 +45,11 @@ MealDetailScreen.navigationOptions = ({navigation}) => {
     headerTitle: title,
     headerRight: (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item iconName="staro" title="Favorite" onPress={() => {}} />
+        <Item
+          iconName="staro"
+          title="Favorite"
+          onPress={() => Alert.alert('Note', 'Coming soon!')}
+        />
       </HeaderButtons>
     ),
   };
