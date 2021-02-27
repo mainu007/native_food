@@ -7,6 +7,7 @@ import {
   TouchableNativeFeedback,
   ImageBackground,
 } from 'react-native';
+import DefaultText from './DefaultText';
 
 const MealItem = ({
   onSelectItem,
@@ -29,9 +30,9 @@ const MealItem = ({
           </ImageBackground>
         </View>
         <View style={{...styles.itemRow, ...styles.detail}}>
-          <Text>{duration}</Text>
-          <Text>{complexity.toUpperCase()}</Text>
-          <Text>{affordability.toUpperCase()}</Text>
+          <DefaultText>{duration}</DefaultText>
+          <DefaultText>{complexity.toUpperCase()}</DefaultText>
+          <DefaultText>{affordability.toUpperCase()}</DefaultText>
         </View>
       </TouchableOpacity>
     </View>
