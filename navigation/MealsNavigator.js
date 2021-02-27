@@ -11,6 +11,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {Platform} from 'react-native';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import FilterScreen from '../screens/FilterScreen';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import MenuHeaderButton from '../components/MenuHeaderButton';
 
 const defaultStackNavOptions = {
   headerStyle: {
@@ -19,12 +23,26 @@ const defaultStackNavOptions = {
   headerTintColor: Platform.OS === 'android' ? '#fff' : Colors.primary,
 };
 
+//Header menu button
+const HeaderMenuButton = ({navigation}) => (
+  <HeaderButtons HeaderButtonComponent={MenuHeaderButton}>
+    <Item
+      title="Menu"
+      iconName="menu"
+      onPress={() => navigation.toggleDrawer()}
+    />
+  </HeaderButtons>
+);
+
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
       screen: CategoriesScreen,
-      navigationOptions: {
-        headerTitle: 'Meal Categories',
+      navigationOptions: ({navigation}) => {
+        return {
+          headerTitle: 'Meal Categories',
+          headerLeft: <HeaderMenuButton navigation={navigation} />,
+        };
       },
     },
     CategoryMeal: {
@@ -72,7 +90,7 @@ const tabNavigatorConfig = {
   },
 };
 
-const MealTabNavigator =
+const MealFavNavigator =
   Platform.OS === 'android'
     ? createMaterialBottomTabNavigator(tabNavigatorConfig, {
         activeColor: '#fff',
@@ -86,4 +104,26 @@ const MealTabNavigator =
         },
       });
 
-export default createAppContainer(MealTabNavigator);
+const FiltersNavigator = createStackNavigator(
+  {
+    Filters: {
+      screen: FilterScreen,
+      navigationOptions: ({navigation}) => {
+        return {
+          headerTitle: 'Filters',
+          headerLeft: <HeaderMenuButton navigation={navigation} />,
+        };
+      },
+    },
+  },
+  {
+    defaultNavigationOptions: defaultStackNavOptions,
+  },
+);
+
+const MainNavigator = createDrawerNavigator({
+  MealFavorites: MealFavNavigator,
+  Filters: FiltersNavigator,
+});
+
+export default createAppContainer(MainNavigator);

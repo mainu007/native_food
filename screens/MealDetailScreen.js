@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {MEALS} from '../data/dummy-data';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/CustomHeaderButton';
 
