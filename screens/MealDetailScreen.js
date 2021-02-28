@@ -6,6 +6,7 @@ import CustomHeaderButton from '../components/CustomHeaderButton';
 import DefaultText from '../components/DefaultText';
 
 const MealDetailScreen = ({navigation}) => {
+  const a = 10;
   const mealId = navigation.getParam('mealId');
   const selectedMeal = MEALS.find((item) => item.id === mealId);
 
@@ -39,8 +40,7 @@ const MealDetailScreen = ({navigation}) => {
 };
 
 MealDetailScreen.navigationOptions = ({navigation}) => {
-  const mealId = navigation.getParam('mealId');
-  const {title} = MEALS.find((item) => item.id === mealId);
+  const title = navigation.getParam('mealTitle');
   return {
     headerTitle: title,
     headerRight: (
